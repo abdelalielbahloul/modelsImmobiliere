@@ -33,6 +33,8 @@ mongoose.connect(process.env.DATABASE, opts)
         console.log(error);
         
     });
+mongoose.Promise = global.Promise;
+
 
 //middlewares 
 app.use(morgan('dev')); //afficher l'etats des requetes dans le console en dev

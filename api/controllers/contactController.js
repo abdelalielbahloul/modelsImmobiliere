@@ -1,14 +1,11 @@
 const Contact = require('../models/contact');
 const mongoose = require('mongoose');
 
-exports.index = (req, res, next) => {
-    try {
-        Contact.find().select('_id firstName lastName email phone message').exec()
+exports.index = async (req, res) => {
+     await Contact.find().select('_id firstName lastName email phone message').exec()
         .then( result => {
             console.log(result);
-            res.status(200).json({
-                msg: "jqsdjkqsjk"
-            })
+            res.send(result);
             
         }).catch( err => {
             res.status(500).json({
@@ -17,13 +14,9 @@ exports.index = (req, res, next) => {
             res.end();
             return
         })
-    } catch (error) {
-        res.json(error)
-    }
-    next();
 }
 
-exports.create = (req, res, next) => {
+exports.create = async (req, res) => {
     const contact = new Contact({
         _id: new mongoose.Types.ObjectId(),
         firstName: req.body.firstName,
@@ -32,7 +25,7 @@ exports.create = (req, res, next) => {
         phone: req.body.phone,
         message: req.body.message
     });
-    contact.save()
+    await contact.save()
         .then( result => {
             res.status(201).json({
                 message: "Contact was created",
@@ -55,18 +48,18 @@ exports.create = (req, res, next) => {
     
 }
 
-exports.show = (req, res, next) => {
+exports.show = (req, res) => {
     
 }
 
-exports.update = (req, res, next) => {
+exports.update = (req, res) => {
     
 }
 
-exports.edit = (req, res, next) => {
+exports.edit = (req, res) => {
     
 }
 
-exports.delete = (req, res, next) => {
+exports.delete = (req, res) => {
     
 }
