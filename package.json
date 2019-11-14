@@ -1,7 +1,7 @@
 {
-  "name": "modelsimobiliere",
+  "name": "modelsimmobilier",
   "version": "1.0.0",
-  "description": "models for agency imobiliere",
+  "description": "models for agency immobilier",
   "main": "index.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -13,7 +13,7 @@
   },
   "keywords": [
     "agency",
-    "imobliere",
+    "immobilier",
     "models",
     "class"
   ],
