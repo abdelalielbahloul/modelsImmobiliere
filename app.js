@@ -5,14 +5,10 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-// routes
-const nosBienRoute = require('./routes/nosBienRoute');
-const contact = require('./routes/contacts');
-const proposition = require('./routes/propositions');
-const superficie = require('./routes/superficies');
-const transaction = require('./routes/transactions');
-const typeBien = require('./routes/typeBiens');
-const user = require('./routes/users');
+// importer les routes
+const contactRoute = require('./api/routes/contactRoute');
+
+
 
 
 
@@ -38,12 +34,46 @@ mongoose.connect(process.env.DATABASE, opts)
         
     });
 
-//configuration de server
-app.use(morgan('dev')); //afficher l'etats des requetes dans le console
-app.use(bodyParser.urlencoded({ extended: false}));
+//middlewares 
+app.use(morgan('dev')); //afficher l'etats des requetes dans le console en dev
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/nosBiens', nosBien)
+// Headers
+app.use( (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header(
+        'Access-Control-Allow-Headers',
+        'origin, X-Requested-With, Content-Type, Accept, Authorization'
+    );
+    if(req.method === 'OPTIONS'){
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, DELETE, PATCH, POST');
+        return res.status(200).json({});
+    }
+
+    next();
+});
+
+// les routes disponibles
+app.use('/contacts', contactRoute);
+
+
+
+
+// handel errors
+app.use( (req, res, next) => {
+    const err = new Error('404 - Not Found!');
+
+    res.status = 404;
+    next(err)
+});
+app.use( (err, req, res, next) => {
+
+    res.status = err.status || 500;
+    res.sendStatus(res.status);
+    res.end();
+    return
+});
 
 
 module.exports = app;
