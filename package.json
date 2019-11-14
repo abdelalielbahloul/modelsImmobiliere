@@ -1,0 +1,22 @@
+{
+  "name": "modelsimobiliere",
+  "version": "1.0.0",
+  "description": "models for agency imobiliere",
+  "main": "index.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "mongoose": "^5.7.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "agency",
+    "imobliere",
+    "models",
+    "class"
+  ],
+  "author": "PGK conseil",
+  "license": "ISC"
+}
