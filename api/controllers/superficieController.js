@@ -16,6 +16,11 @@ exports.index = async (req, res) => {
 }
 
 exports.create = async (req, res) => {
+    if( !req.body.intitule ){
+        res.sendStatus(400)
+        res.end();
+        return
+    }
     const superficie = new Superficie({
         _id: new mongoose.Types.ObjectId(),
         intitule: req.body.intitule
@@ -55,9 +60,7 @@ exports.show = async (req, res) => {
 exports.update = async (req, res) => {
     const id = req.params.id;
     if( !req.body.intitule ){
-        res.status(500).json({
-            error: "Can't update"
-        })
+        res.sendStatus(400)
         res.end();
         return
     }
@@ -83,9 +86,7 @@ exports.update = async (req, res) => {
 exports.edit = async (req, res) => {
     const id = req.params.id;
     if( !req.body.intitule ){
-        res.status(500).json({
-            error: "Can't edit"
-        })
+        res.sendStatus(400)
         res.end();
         return
     }

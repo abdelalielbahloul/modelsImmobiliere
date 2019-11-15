@@ -10,6 +10,7 @@ const contactRoute = require('./api/routes/contactRoute');
 const superficieRoute = require('./api/routes/superficieRoute');
 const transactionRoute = require('./api/routes/transactionRoute');
 const typeBienRoute = require('./api/routes/typeBienRoute');
+const userRoute = require('./api/routes/userRoute');
 
 
 
@@ -62,6 +63,7 @@ app.use('/contacts', contactRoute);
 app.use('/superficies', superficieRoute);
 app.use('/transactions', transactionRoute);
 app.use('/typeBiens', typeBienRoute);
+app.use('/users', userRoute);
 
 
 // handel errors

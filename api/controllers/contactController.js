@@ -17,6 +17,11 @@ exports.index = async (req, res) => {
 }
 
 exports.create = async (req, res) => {
+    if( !req.body.firstName || !req.body.lastName || !req.body.email || !req.body.phone ){
+        res.sendStatus(400)
+        res.end();
+        return
+    }
     const contact = new Contact({
         _id: new mongoose.Types.ObjectId(),
         firstName: req.body.firstName,
@@ -67,9 +72,7 @@ exports.show = async (req, res) => {
 exports.update = async (req, res) => {
     const id = req.params.id;
     if( !req.body.firstName || !req.body.lastName || !req.body.email || !req.body.phone ){
-        res.status(500).json({
-            error: "Can't update"
-        })
+        res.sendStatus(400)
         res.end();
         return
     }
@@ -108,9 +111,7 @@ exports.update = async (req, res) => {
 exports.edit = async (req, res) => {
     const id = req.params.id;
     if( !req.body.firstName || !req.body.lastName || !req.body.email || !req.body.phone ){
-        res.status(500).json({
-            error: "Can't edit"
-        })
+        res.sendStatus(400)
         res.end();
         return
     }

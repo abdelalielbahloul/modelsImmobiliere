@@ -16,6 +16,11 @@ exports.index = async (req, res) => {
 }
 
 exports.create = async (req, res) => {
+    if( !req.body.typeLocation ){
+        res.sendStatus(400)
+        res.end();
+        return
+    }
     const transaction = new Transaction({
         _id: new mongoose.Types.ObjectId(),
         typeLocation: req.body.typeLocation
@@ -55,9 +60,7 @@ exports.show = async (req, res) => {
 exports.update = async (req, res) => {
     const id = req.params.id;
     if( !req.body.typeLocation ){
-        res.status(500).json({
-            error: "Can't update"
-        })
+        res.sendStatus(400)
         res.end();
         return
     }
@@ -83,9 +86,7 @@ exports.update = async (req, res) => {
 exports.edit = async (req, res) => {
     const id = req.params.id;
     if( !req.body.typeLocation ){
-        res.status(500).json({
-            error: "Can't edit"
-        })
+        res.sendStatus(400)
         res.end();
         return
     }
