@@ -66,6 +66,13 @@ exports.show = async (req, res) => {
 
 exports.update = async (req, res) => {
     const id = req.params.id;
+    if( !req.body.firstName || !req.body.lastName || !req.body.email || !req.body.phone ){
+        res.status(500).json({
+            error: "Can't update"
+        })
+        res.end();
+        return
+    }
     const updatedContact = new Contact({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -100,9 +107,15 @@ exports.update = async (req, res) => {
 
 exports.edit = async (req, res) => {
     const id = req.params.id;
+    if( !req.body.firstName || !req.body.lastName || !req.body.email || !req.body.phone ){
+        res.status(500).json({
+            error: "Can't edit"
+        })
+        res.end();
+        return
+    }
     const updatedField = req.body;
-    
-    await Contact.updateOne({ _id: id }, {$set: updatedField })
+    await Contact.updateOne({ _id: id }, { $set: updatedField })
         .exec()
         .then( result => {
             res.status(201).json({

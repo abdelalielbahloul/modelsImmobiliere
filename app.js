@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 // importer les routes
 const contactRoute = require('./api/routes/contactRoute');
-
+const superficieRoute = require('./api/routes/superficieRoute');
 
 
 
@@ -58,7 +58,7 @@ app.use( (req, res, next) => {
 
 // les routes disponibles
 app.use('/contacts', contactRoute);
-
+app.use('/superficies', superficieRoute);
 
 
 

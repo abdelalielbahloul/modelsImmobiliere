@@ -8,4 +8,4 @@ const superficieSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Superficie', superficieSchema);
+module.exports = mongoose.model('Superficie', superficieSchema); 
