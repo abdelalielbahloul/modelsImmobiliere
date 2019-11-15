@@ -23,7 +23,8 @@ const contactSchema = mongoose.Schema({
     },
     message: {
         type: String,
-        // required: true
+        default: " ",
+        required: false
     },
 });
 
