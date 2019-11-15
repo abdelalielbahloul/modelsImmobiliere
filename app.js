@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const contactRoute = require('./api/routes/contactRoute');
 const superficieRoute = require('./api/routes/superficieRoute');
 const transactionRoute = require('./api/routes/transactionRoute');
+const typeBienRoute = require('./api/routes/typeBienRoute');
 
 
 
@@ -59,7 +60,8 @@ app.use( (req, res, next) => {
 // les routes disponibles
 app.use('/contacts', contactRoute);
 app.use('/superficies', superficieRoute);
-app.use('/transactions', transactionRoute)
+app.use('/transactions', transactionRoute);
+app.use('/typeBiens', typeBienRoute);
 
 
 // handel errors
