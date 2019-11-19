@@ -4,6 +4,7 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // importer les routes
 const contactRoute = require('./api/routes/contactRoute');
@@ -39,13 +40,14 @@ mongoose.Promise = global.Promise;
 
 
 //middlewares 
+app.use(cors());
 app.use(morgan('dev')); //afficher l'etats des requetes dans le console en dev
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Headers
 app.use( (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
+    // res.header('Access-Control-Allow-Origin', '*');
     res.header(
         'Access-Control-Allow-Headers',
         'origin, X-Requested-With, Content-Type, Accept, Authorization'
